@@ -22,7 +22,7 @@ export default defineConfig({
     ],
   
     footer: {
-        message: 'Released under the <a href="https://github.com/real-airbauer/main/LICENSE">MIT License</a>.',
+        message: 'Released under the <a href="https://github.com/real-airbauer/airbauer/blob/main/LICENSE">MIT License</a>.',
         copyright: 'Copyright © 2023 <a href="https://github.com/real-airbauer">AIRbauer</a>'
     },
 
