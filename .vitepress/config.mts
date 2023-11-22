@@ -30,6 +30,9 @@ export default defineConfig({
 
     socialLinks: [
       { icon: "github", link: "https://github.com/real-airbauer/airbauer" },
+      { icon: "mastodon", link: "https://mastodon.social/@airbauer"},
+      { icon: "discord", link: "https://discord.com/users/549207539544227846"},
+
     ],
   },
 });
