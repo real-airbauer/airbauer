@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -7,27 +7,29 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: "Home", link: "/" },
+      { text: "Examples", link: "/markdown-examples" },
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: "Examples",
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      }
+          { text: "Markdown Examples", link: "/markdown-examples" },
+          { text: "Runtime API Examples", link: "/api-examples" },
+        ],
+      },
     ],
-  
+
     footer: {
-        message: 'Released under the <a href="https://github.com/real-airbauer/airbauer/blob/main/LICENSE">MIT License</a>.',
-        copyright: 'Copyright © 2023 <a href="https://github.com/real-airbauer">AIRbauer</a>'
+      message:
+        'Released under the <a href="https://github.com/real-airbauer/airbauer/blob/main/LICENSE">MIT License</a>.',
+      copyright:
+        'Copyright © 2023 <a href="https://github.com/real-airbauer">AIRbauer</a>',
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/real-airbauer/airbauer' }
-    ]
-  }
-})
+      { icon: "github", link: "https://github.com/real-airbauer/airbauer" },
+    ],
+  },
+});
