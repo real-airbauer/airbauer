@@ -27,7 +27,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/real-airbauer/vitepress' }
+      { icon: 'github', link: 'https://github.com/real-airbauer/airbauer' }
     ]
   }
 })
