@@ -296,7 +296,7 @@ function useSidebar() {
   });
   const hasAside = computed(() => {
     if (frontmatter.value.layout === "home") return false;
-    if (frontmatter.value.aside != null) return !!frontmatter.value.aside;
+    if (frontmatter.value.aside != null) return Boolean(frontmatter.value.aside);
     return theme2.value.aside !== false;
   });
   const isSidebarEnabled = computed(() => hasSidebar.value && is960.value);
