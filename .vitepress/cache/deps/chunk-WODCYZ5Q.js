@@ -151,7 +151,6 @@ function parseStringStyle(cssText) {
     .forEach((item) => {
       if (item) {
         const tmp = item.split(propertyDelimiterRE);
-        
       }
     });
   return ret;
@@ -196,7 +195,8 @@ var VOID_TAGS =
 var isHTMLTag = makeMap(HTML_TAGS);
 var isSVGTag = makeMap(SVG_TAGS);
 var isVoidTag = makeMap(VOID_TAGS);
-var specialBooleanAttrs = "itemscope,allowfullscreen,formnovalidate,ismap,nomodule,novalidate,readonly";
+var specialBooleanAttrs =
+  "itemscope,allowfullscreen,formnovalidate,ismap,nomodule,novalidate,readonly";
 var isSpecialBooleanAttr = makeMap(specialBooleanAttrs);
 var isBooleanAttr = makeMap(
   specialBooleanAttrs +
@@ -1551,8 +1551,7 @@ function getComponentTrace() {
         recurseCount: 0,
       });
     }
-    const parentInstance =
-      currentVNode.component?.parent;
+    const parentInstance = currentVNode.component?.parent;
     currentVNode = parentInstance?.vnode;
   }
   return normalizedStack;
@@ -2272,7 +2271,7 @@ var currentScopeId = null;
 function setCurrentRenderingInstance(instance) {
   const prev = currentRenderingInstance;
   currentRenderingInstance = instance;
-  currentScopeId = (instance?.type.__scopeId) || null;
+  currentScopeId = instance?.type.__scopeId || null;
   return prev;
 }
 function pushScopeId(id) {
@@ -3337,7 +3336,7 @@ var INITIAL_WATCHER_VALUE = {};
 function watch(source, cb, options) {
   if (!isFunction(cb)) {
     warn2(
-      "\`watch(fn, options?)\` signature has been moved to a separate API. Use \`watchEffect(fn, options?)\` instead. \`watch\` now only supports \`watch(source, cb, options?) signature.",
+      "`watch(fn, options?)` signature has been moved to a separate API. Use `watchEffect(fn, options?)` instead. `watch` now only supports `watch(source, cb, options?) signature.",
     );
   }
   return doWatch(source, cb, options);
@@ -3501,10 +3500,7 @@ function doWatch(
       oldValue = effect2.run();
     }
   } else if (flush === "post") {
-    queuePostRenderEffect(
-      effect2.run.bind(effect2),
-      instance?.suspense,
-    );
+    queuePostRenderEffect(effect2.run.bind(effect2), instance?.suspense);
   } else {
     effect2.run();
   }
@@ -4520,7 +4516,7 @@ function renderSlot(slots, name, props = {}, fallback, noSlotted) {
       key:
         props.key || // slot content array of a dynamic conditional slot may have a branch
         // key attached in the `createSlots` helper, respect that
-        (validSlotContent?.key) ||
+        validSlotContent?.key ||
         `_${name}`,
     },
     validSlotContent || (fallback ? fallback() : []),
@@ -5314,7 +5310,7 @@ function mergeOptions(to, from, strats, asMixin = false) {
         '"expose" option is ignored when declared in mixins or extends. It should only be declared in the base component itself.',
       );
     } else {
-      const strat = internalOptionMergeStrats[key] || (strats?.[key]);
+      const strat = internalOptionMergeStrats[key] || strats?.[key];
       to[key] = strat ? strat(to[key], from[key]) : from[key];
     }
   }
@@ -5610,8 +5606,7 @@ function provide(key, value) {
     }
   } else {
     let provides = currentInstance.provides;
-    const parentProvides =
-      currentInstance.parent?.provides;
+    const parentProvides = currentInstance.parent?.provides;
     if (parentProvides === provides) {
       provides = currentInstance.provides = Object.create(parentProvides);
     }
@@ -7062,12 +7057,7 @@ function baseCreateRenderer(options, createHydrationFns) {
     let el;
     let vnodeHook;
     const { type, props, shapeFlag, transition, dirs } = vnode;
-    el = vnode.el = hostCreateElement(
-      vnode.type,
-      isSVG,
-      props?.is,
-      props,
-    );
+    el = vnode.el = hostCreateElement(vnode.type, isSVG, props?.is, props);
     if (shapeFlag & 8) {
       hostSetElementText(el, vnode.children);
     } else if (shapeFlag & 16) {
@@ -7617,10 +7607,7 @@ function baseCreateRenderer(options, createHydrationFns) {
         if (bm) {
           invokeArrayFns(bm);
         }
-        if (
-          !isAsyncWrapperVNode &&
-          (vnodeHook = props?.onVnodeBeforeMount)
-        ) {
+        if (!isAsyncWrapperVNode && (vnodeHook = props?.onVnodeBeforeMount)) {
           invokeVNodeHook(vnodeHook, parent, initialVNode);
         }
         toggleRecurse(instance, true);
@@ -7680,10 +7667,7 @@ function baseCreateRenderer(options, createHydrationFns) {
         if (m) {
           queuePostRenderEffect(m, parentSuspense);
         }
-        if (
-          !isAsyncWrapperVNode &&
-          (vnodeHook = props?.onVnodeMounted)
-        ) {
+        if (!isAsyncWrapperVNode && (vnodeHook = props?.onVnodeMounted)) {
           const scopedInitialVNode = initialVNode;
           queuePostRenderEffect(
             () => invokeVNodeHook(vnodeHook, parent, scopedInitialVNode),
@@ -8206,10 +8190,7 @@ function baseCreateRenderer(options, createHydrationFns) {
     const shouldInvokeDirs = shapeFlag & 1 && dirs;
     const shouldInvokeVnodeHook = !isAsyncWrapper(vnode);
     let vnodeHook;
-    if (
-      shouldInvokeVnodeHook &&
-      (vnodeHook = props?.onVnodeBeforeUnmount)
-    ) {
+    if (shouldInvokeVnodeHook && (vnodeHook = props?.onVnodeBeforeUnmount)) {
       invokeVNodeHook(vnodeHook, parentComponent, vnode);
     }
     if (shapeFlag & 6) {
@@ -8253,8 +8234,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       }
     }
     if (
-      (shouldInvokeVnodeHook &&
-        (vnodeHook = props?.onVnodeUnmounted)) ||
+      (shouldInvokeVnodeHook && (vnodeHook = props?.onVnodeUnmounted)) ||
       shouldInvokeDirs
     ) {
       queuePostRenderEffect(() => {
@@ -8631,7 +8611,7 @@ var TeleportImpl = {
           }
         }
       } else {
-        if ((n2.props?.to) !== (n1.props?.to)) {
+        if (n2.props?.to !== n1.props?.to) {
           const nextTarget = (n2.target = resolveTarget(
             n2.props,
             querySelector,
@@ -8865,7 +8845,12 @@ var normalizeRef = ({ ref: ref2, ref_key, ref_for }) => {
   }
   return ref2 != null
     ? isString(ref2) || isRef(ref2) || isFunction(ref2)
-      ? { i: currentRenderingInstance, r: ref2, k: ref_key, f: Boolean(ref_for) }
+      ? {
+          i: currentRenderingInstance,
+          r: ref2,
+          k: ref_key,
+          f: Boolean(ref_for),
+        }
       : ref2
     : null;
 };
@@ -8998,7 +8983,7 @@ function _createVNode(
   if (shapeFlag & 4 && isProxy(type)) {
     type = toRaw(type);
     warn2(
-      "Vue received a Component which was made a reactive object. This can lead to unnecessary performance overhead, and should be avoided by marking the component with \`markRaw\` or using \`shallowRef\` instead of \`ref\`.",
+      "Vue received a Component which was made a reactive object. This can lead to unnecessary performance overhead, and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`.",
       `
 Component that was made reactive: `,
       type,
@@ -9030,17 +9015,16 @@ function cloneVNode(vnode, extraProps, mergeRef = false) {
     type: vnode.type,
     props: mergedProps,
     key: mergedProps && normalizeKey(mergedProps),
-    ref:
-      extraProps?.ref
-        ? // #2078 in the case of <component :is="vnode" ref="extra"/>
-          // if the vnode itself already has a ref, cloneVNode will need to merge
-          // the refs so the single vnode can be set on multiple refs
-          mergeRef && ref2
-          ? isArray(ref2)
-            ? ref2.concat(normalizeRef(extraProps))
-            : [ref2, normalizeRef(extraProps)]
-          : normalizeRef(extraProps)
-        : ref2,
+    ref: extraProps?.ref
+      ? // #2078 in the case of <component :is="vnode" ref="extra"/>
+        // if the vnode itself already has a ref, cloneVNode will need to merge
+        // the refs so the single vnode can be set on multiple refs
+        mergeRef && ref2
+        ? isArray(ref2)
+          ? ref2.concat(normalizeRef(extraProps))
+          : [ref2, normalizeRef(extraProps)]
+        : normalizeRef(extraProps)
+      : ref2,
     scopeId: vnode.scopeId,
     slotScopeIds: vnode.slotScopeIds,
     children:
@@ -9133,9 +9117,7 @@ function normalizeChildren(vnode, children) {
     if (shapeFlag & (1 | 64)) {
       const slot = children.default;
       if (slot) {
-        
         normalizeChildren(vnode, slot());
-        
       }
       return;
     } else {
@@ -10638,7 +10620,7 @@ var VueElement = class _VueElement extends BaseClass {
     } else {
       if (this.shadowRoot) {
         warn2(
-          "Custom element has pre-rendered declarative shadow root but is not defined as hydratable. Use \`defineSSRCustomElement\`.",
+          "Custom element has pre-rendered declarative shadow root but is not defined as hydratable. Use `defineSSRCustomElement`.",
         );
       }
       this.attachShadow({ mode: "open" });
@@ -11256,10 +11238,7 @@ function resolveDynamicModel(tagName, type) {
   }
 }
 function callModelHook(el, binding, vnode, prevVNode, hook) {
-  const modelToUse = resolveDynamicModel(
-    el.tagName,
-    vnode.props?.type,
-  );
+  const modelToUse = resolveDynamicModel(el.tagName, vnode.props?.type);
   const fn = modelToUse[hook];
   fn?.(el, binding, vnode, prevVNode);
 }
@@ -11414,7 +11393,7 @@ function injectCompilerOptionsCheck(app) {
       },
       set() {
         warn2(
-          "The \`isCustomElement\` config option is deprecated. Use \`compilerOptions.isCustomElement\` instead.",
+          "The `isCustomElement` config option is deprecated. Use `compilerOptions.isCustomElement` instead.",
         );
       },
     });
@@ -11450,7 +11429,7 @@ function normalizeContainer(container) {
     container.mode === "closed"
   ) {
     warn2(
-      'mounting on a ShadowRoot with \`{mode: "closed"}\` may lead to unpredictable bugs',
+      'mounting on a ShadowRoot with `{mode: "closed"}` may lead to unpredictable bugs',
     );
   }
   return container;
