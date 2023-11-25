@@ -9,6 +9,7 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "Examples", link: "/markdown-examples" },
+      { text: "vorschau", link: "/example-customer-page"},
     ],
 
     sidebar: [
@@ -17,6 +18,7 @@ export default defineConfig({
         items: [
           { text: "Markdown Examples", link: "/markdown-examples" },
           { text: "Runtime API Examples", link: "/api-examples" },
+          { text: "vorschau", link: "/example-customer-page"},
         ],
       },
     ],
